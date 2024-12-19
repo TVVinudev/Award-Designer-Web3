@@ -10,6 +10,9 @@ contract CertiApp {
         string date;
     }
     address admin;
+
+    event issued(uint , string, string, string, string);
+
     constructor() {
         admin = msg.sender;
     }
@@ -24,6 +27,7 @@ contract CertiApp {
     function issue(uint256 _id,string memory _name,string memory _course,string memory _grade,string memory _date) public verify{
         //   require(bytes(Certificates[_id].name).length == 0, "Certificate already exists");
         Certificates[_id] = Student(_name,_course,_grade,_date);
+        emit issued(_id, _name, _course, _grade, _date);
     }
 
 
